@@ -1,3 +1,9 @@
+import picDeveloper from "../assets/images/pic_as_developer.png"
+import faceBook from "../assets/socail_media/communication.png"
+import tiktok from "../assets/socail_media/tiktok.png"
+import instagram from "../assets/socail_media/instagram.png"
+import telegram from "../assets/socail_media/telegram.png"
+
 function About() {
     const viewFacebook = ()=>{
         window.open("https://www.facebook.com/?ref=homescreenpwa","_blank")
@@ -16,12 +22,12 @@ function About() {
         <div className="flex flex-col items-center justify-center w-full text-white">
             <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 mt-20">
                 <div className="w-[40%] rounded-2xl ml-[50%]">
-                    <img className="rounded-2xl hover:scale-102 duration-300 hover:animate-pulse" src="src\assets\images\pic_as_developer.png" alt="" />
+                    <img className="rounded-2xl hover:scale-102 duration-300 hover:animate-pulse" src={picDeveloper} alt="" />
                     <div className="flex justify-around mt-2 ml-10 mr-10 bg-black/30 backdrop-blur-md p-2 rounded-2xl">
-                        <div className="bg-blue-500 rounded-lg p-2 justify-center items-center flex hover:bg-blue-600 hover:scale-105 duration-300"><button onClick={viewFacebook}><img src="src\assets\socail_media\communication.png" alt="" /></button></div>
-                        <div className="bg-blue-500 rounded-lg p-2 justify-center items-center flex hover:bg-blue-600 hover:scale-105 duration-300"><button onClick={viewTelegram}><img src="src\assets\socail_media\telegram.png" alt="" /></button></div>
-                        <div className="bg-orange-500 rounded-lg p-2 justify-center items-center flex hover:bg-orange-600 hover:scale-105 duration-300"><button onClick={viewInstagram}><img src="src\assets\socail_media\instagram.png" alt="" /></button></div>
-                        <div className="bg-gray-900 rounded-lg p-2 justify-center items-center flex hover:bg-black hover:scale-105 duration-300"><button onClick={viewTiktok}><img className="w-6 h-6 rounded-lg" src="src\assets\socail_media\tiktok.png" alt="" /></button></div>
+                        <div className="bg-blue-500 rounded-lg p-2 justify-center items-center flex hover:bg-blue-600 hover:scale-105 duration-300"><button onClick={viewFacebook}><img src={faceBook} alt="" /></button></div>
+                        <div className="bg-blue-500 rounded-lg p-2 justify-center items-center flex hover:bg-blue-600 hover:scale-105 duration-300"><button onClick={viewTelegram}><img src={telegram} alt="" /></button></div>
+                        <div className="bg-orange-500 rounded-lg p-2 justify-center items-center flex hover:bg-orange-600 hover:scale-105 duration-300"><button onClick={viewInstagram}><img src={instagram} alt="" /></button></div>
+                        <div className="bg-gray-900 rounded-lg p-2 justify-center items-center flex hover:bg-black hover:scale-105 duration-300"><button onClick={viewTiktok}><img className="w-6 h-6 rounded-lg" src={tiktok} alt="" /></button></div>
                     </div>
                 </div>
                 <div className=" w-[50%] mr-40%">

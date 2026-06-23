@@ -10,6 +10,7 @@ import Contact from "./Contact";
 import Footer from "./Footer";
 import { Button, Modal,message } from 'antd';
 import axios from 'axios';
+import picNobg from "../assets/images/myPic_skinwhite_removebg.png"
 
 const defaultStyles = {
     root: {
@@ -211,7 +212,7 @@ function App() {
                 <div className=" bg-white/10 backdrop-blur-md shadow-lg rounded-2xl w-[70%] ml-[15%] h-90 sticky z-30 grid grid-cols-2 gap-4">
                     <img
                         className="absolute z-50 w-100 -mt-20"
-                        src="src/assets/images/myPic_skinwhite_removebg.png"
+                        src={picNobg}
                         alt=""
                     />
                     <div className="absolute text-2xl ml-150 mt-10 text-gray-300">
