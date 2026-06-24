@@ -140,7 +140,7 @@ function App() {
 
     const handleSubmit = async () => {
         try {
-            const response = await axios.post("http://localhost:8000/api/advices",formData);
+            const response = await axios.post("http://localhost:3000/api/advices",formData);
             const data = await response.data;
                 setFormData({
                     name: "",
@@ -207,8 +207,6 @@ function App() {
                             </button>
                         </div>
                     </div>
-
-                    {/* Mobile Menu Button */}
                     <button
                         className="md:hidden text-2xl"
                         onClick={() => setMenuOpen(!menuOpen)}
@@ -250,7 +248,6 @@ function App() {
             className="min-h-screen bg-cover bg-center pb-10"
             style={{ backgroundImage: `url(${bgImage})` }}
             >
-            {/* Clock */}
             <div
                 className="
                 fixed top-24 right-2 md:right-4
@@ -264,8 +261,6 @@ function App() {
                 ម៉ោង {hours}:{minutes}:{seconds} វិនាទី
                 </h2>
             </div>
-
-            {/* Welcome */}
             <h1
                 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl
                 font-bold text-center pt-24 md:pt-30 uppercase
