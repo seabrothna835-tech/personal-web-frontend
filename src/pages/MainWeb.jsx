@@ -11,6 +11,7 @@ import Footer from "./Footer";
 import { Button, Modal,message } from 'antd';
 import axios from 'axios';
 import picNobg from "../assets/images/myPic_skinwhite_removebg.png"
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const defaultStyles = {
     root: {
@@ -52,6 +53,7 @@ function App() {
     const [active, setActive] = useState(false);
     const [openResponsive, setOpenResponsive] = useState(false);
     const [now, setNow] = useState(new Date());
+    const [menuOpen, setMenuOpen] = useState(false);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -172,63 +174,199 @@ function App() {
     return (
         <div className="font-sans scroll-smooth">
             {contextHolder}
-            <header className=" fixed top-2 w-full h-16 rounded-2xl p-2 overflow-hidden z-50 ">
-                {/* Animated Border */}
-                <div className="absolute inset-0 animated-border rounded-lg">
-                    <div className="relative h-full bg-black/30 backdrop-blur-md rounded-lg flex items-center px-4 text-white justify-between">
-                        <div className="flex justify-center items-center gap-2">
-                            <span className="md:text-3xl xl:text-6xl sm:text-2xl"><GiBeamsAura /></span>
-                            <h1 className="md:text-2xl xl:text-3xl sm:text-lg font-bold">AURA</h1>
+            <header className="fixed top-2 w-full h-16 rounded-2xl p-2 z-50">
+            <div className="absolute inset-0 animated-border rounded-lg">
+                <div className="relative h-full bg-black/30 backdrop-blur-md rounded-lg flex items-center px-4 text-white justify-between">
+
+                    {/* Logo */}
+                    <div className="flex items-center gap-2">
+                        <span className="text-2xl md:text-3xl xl:text-6xl">
+                            <GiBeamsAura />
+                        </span>
+                        <h1 className="text-lg md:text-2xl xl:text-3xl font-bold">
+                            AURA
+                        </h1>
+                    </div>
+
+                    {/* Desktop Menu */}
+                    <div className="hidden md:flex uppercase text-sm md:text-lg xl:text-xl items-center gap-5">
+                        <div className="flex gap-3">
+                            <a className="hover:text-blue-600" href="#">Home</a>
+                            <a className="hover:text-blue-600" href="#about">About</a>
+                            <a className="hover:text-blue-600" href="#education">Education</a>
+                            <a className="hover:text-blue-600" href="#skills">Skills</a>
+                            <a className="hover:text-blue-600" href="#contact">Contact</a>
                         </div>
-                        <div className="uppercase text-sm sm:text-base md:text-lg  xl:text-xl flex justify-center items-center gap-5">
-                            <div className=" flex gap-3">
-                                <a className="hover:text-blue-600" href="#">Home</a>
-                                <a className="hover:text-blue-600" href="#about">ABOUT</a>
-                                <a className="hover:text-blue-600" href="#education">education</a>
-                                <a className="hover:text-blue-600" href="#skills">skills</a>
-                                <a className="hover:text-blue-600" href="#contact">contact</a>
-                            </div>
-                            <div className="moving-border inline-block rounded-md  hover:scale-105 transition">
-                                <button className="bg-blue-800 text-white px-4 py-2 rounded-md uppercase text-lg" onClick={showModalResponsive}>
-                                    advice
-                                </button>
-                            </div>
+
+                        <div className="moving-border inline-block rounded-md hover:scale-105 transition">
+                            <button
+                                className="bg-blue-800 text-white px-4 py-2 rounded-md uppercase"
+                                onClick={showModalResponsive}
+                            >
+                                Advice
+                            </button>
                         </div>
                     </div>
+
+                    {/* Mobile Menu Button */}
+                    <button
+                        className="md:hidden text-2xl"
+                        onClick={() => setMenuOpen(!menuOpen)}
+                    >
+                        {menuOpen ? <FaTimes /> : <FaBars />}
+                    </button>
                 </div>
-            </header>
+            </div>
+            {/* Mobile Dropdown */}
+            {menuOpen && (
+                <div className="md:hidden mt-15 mr-0 ml-[60%] bg-black/40 backdrop-blur-md rounded-xl p-4 text-white">
+                    <div className="flex flex-col gap-4 uppercase text-center">
+                        <div className="p-1.5 ml-2 mr-2 hover:bg-gray-400 hover:rounded-xl active:bg-gray-600">
+                            <a href="#" onClick={() => setMenuOpen(false)}>Home</a>
+                        </div>
+                        <div className="p-1.5 ml-2 mr-2 -mt-5 hover:bg-gray-400 hover:rounded-xl active:bg-gray-600">
+                            <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
+                        </div>
+                        <div className="p-1.5 ml-2 mr-2 -mt-5 hover:bg-gray-400 hover:rounded-xl active:bg-gray-600">
+                            <a href="#education" onClick={() => setMenuOpen(false)}>Education</a>
+                        </div>
+                        <div className="p-1.5 ml-2 mr-2 -mt-5 hover:bg-gray-400 hover:rounded-xl active:bg-gray-600">
+                            <a href="#skills" onClick={() => setMenuOpen(false)}>Skills</a>
+                        </div>
+                        <div className="p-1.5 ml-2 mr-2 -mt-5 hover:bg-gray-400 hover:rounded-xl active:bg-gray-600">
+                            <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+                        </div>
+                        <button
+                            className="bg-blue-400 px-4 py-2 rounded-xl ml-2 mr-2 hover:bg-blue-600 active:bg-blue-800"
+                            onClick={showModalResponsive}
+                        >
+                            Advice
+                        </button>
+                    </div>
+                </div>
+            )}
+        </header>
             <section
-                className="h-screen bg-cover bg-center"
-                style={{ backgroundImage: `url(${bgImage})` }}
+            className="min-h-screen bg-cover bg-center pb-10"
+            style={{ backgroundImage: `url(${bgImage})` }}
             >
-                <div className="fixed top-26 right-4 w-[18%] overflow-hidden bg-black/10 backdrop-blur-md rounded-lg px-2 z-40">
-                    <h2 className="marquee text-2xl text-red-400 whitespace-nowrap">
-                        ថ្ងៃ {dayName} ទី{dayNumber} ខែ {monthName} ឆ្នាំ {year} ម៉ោង {hours}:{minutes}:{seconds} វិនាទី
-                    </h2>
-                </div>
-                <h1 className={`text-5xl font-bold text-center pt-30 uppercase drop-shadow-text mb-30 ${
-                    active ? "animate-color" : "typewriter"
-                    }`}>Welcome to My website</h1>
-                <div className=" bg-white/10 backdrop-blur-md shadow-lg rounded-2xl w-[70%] ml-[15%] h-90 sticky z-30 grid grid-cols-2 gap-4">
+            {/* Clock */}
+            <div
+                className="
+                fixed top-24 right-2 md:right-4
+                w-[50%] sm:w-[10%] md:w-[40%] lg:w-[25%]
+                overflow-hidden bg-black/10 backdrop-blur-md
+                rounded-lg px-2 z-40
+                "
+            >
+                <h2 className="marquee text-sm md:text-lg lg:text-2xl text-red-500 whitespace-nowrap">
+                ថ្ងៃ {dayName} ទី{dayNumber} ខែ {monthName} ឆ្នាំ {year}
+                ម៉ោង {hours}:{minutes}:{seconds} វិនាទី
+                </h2>
+            </div>
+
+            {/* Welcome */}
+            <h1
+                className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl
+                font-bold text-center pt-24 md:pt-30 uppercase
+                drop-shadow-text mb-10 md:mb-20 ${
+                active ? "animate-color" : "typewriter"
+                }`}
+            >
+                Welcome to My Website
+            </h1>
+            <div
+                className="
+                bg-white/10
+                backdrop-blur-md
+                shadow-lg
+                rounded-2xl
+                w-[90%]
+                md:w-[85%]
+                lg:w-[80%]
+                mx-auto
+                p-0
+                z-30
+                "
+            >
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                <div className="flex justify-center">
                     <img
-                        className="absolute z-50 w-100 -mt-20"
-                        src={picNobg}
-                        alt=""
+                    className="
+                        w-[180px]
+                        sm:w-[250px]
+                        md:w-[320px]
+                        lg:w-[420px]
+                        xl:w-[500px]
+                        h-auto
+                    "
+                    src={picNobg}
+                    alt="Profile"
                     />
-                    <div className="absolute text-2xl ml-150 mt-10 text-gray-300">
-                        <p className="uppercase text-4xl font-semibold">Hi, I'm <p className="text-gray-300">ROTHNA SEAB</p></p>
-                        <p className="ml-10 flex gap-2 items-center"><span className="text-red-500"><SiSimplenote /></span>Full Stack Web Developer </p>
-                        <p className="focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-opacity-50">I build modern websites using React, Laravel, and PostgreSQL.</p>
-                        <div className="gap-4 flex mt-10">
-                            <div className="moving-border inline-block rounded-md  hover:scale-105 transition">
-                                <button className="bg-blue-800 text-white px-4 py-2 rounded-md text-lg capitalize">learn more</button>
-                            </div>
-                            <div className="moving-border inline-block rounded-md  hover:scale-105 transition">
-                                <button onClick={ClickHireMe} className="bg-blue-800 text-white px-4 py-2 rounded-md text-lg capitalize">hire me</button>
-                            </div>
-                        </div>
+                </div>
+                <div className="text-gray-300 text-center lg:text-left">
+
+                    <h1 className="uppercase text-2xl md:text-3xl lg:text-4xl font-semibold">
+                    Hi, I'm
+                    </h1>
+
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-2">
+                    ROTHNA SEAB
+                    </h2>
+
+                    <p className="flex justify-center lg:justify-start items-center gap-2 mt-4 text-lg md:text-xl">
+                    <span className="text-red-500">
+                        <SiSimplenote />
+                    </span>
+                    Full Stack Web Developer
+                    </p>
+
+                    <p className="mt-4 text-sm md:text-lg leading-relaxed">
+                    I build modern websites using React, Laravel, and PostgreSQL.
+                    </p>
+
+                    <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-center lg:justify-start">
+
+                    <button
+                        className="
+                        moving-border
+                        bg-blue-800
+                        text-white
+                        px-6
+                        py-3
+                        ml-3
+                        mr-3
+                        rounded-md
+                        hover:scale-102
+                        transition
+                        "
+                    >
+                        Learn More
+                    </button>
+
+                    <button
+                        onClick={ClickHireMe}
+                        className="
+                        moving-border
+                        bg-blue-800
+                        text-white
+                        px-6
+                        py-3
+                        ml-3
+                        mr-3
+                        rounded-md
+                        hover:scale-102
+                        transition
+                        "
+                    >
+                        Hire Me
+                    </button>
+
                     </div>
                 </div>
+
+                </div>
+            </div>
             </section>
             <section className="bg-gray-700" id="about">
                 <About />
@@ -243,8 +381,6 @@ function App() {
                 <Contact />
             </section>
             <Footer />
-
-
 
             {/* =================Modal ======================= */}
             <Modal
