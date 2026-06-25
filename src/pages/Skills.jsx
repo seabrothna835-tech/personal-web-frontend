@@ -39,7 +39,7 @@ function Skills() {
         <div className='pt-20'>
             <p className='uppercase text-3xl text-white font-bold text-center '>my skills</p>
             <div className='grid sm:grid-cols-1 lg:grid-cols-2'>
-                <div className='ml-[20%]'>
+                <div className='lg:ml-[20%] ml-10 mr-10'>
                     {skillPercent.map((per,key)=>(
                         <div key={key} className='mt-4'>
                             <p className='text-md text-white uppercase'>{per.name}</p>
@@ -47,11 +47,11 @@ function Skills() {
                         </div>
                     ))}
                 </div>
-                <div className='mt-10 mr-[20%] grid grid-cols-2 lg:grid-cols-3 gap-2 ml-[20%]'>
+                <div className='mt-10 mr-[10%] grid grid-cols-2 lg:grid-cols-3 gap-3 ml-[10%]'>
                     {skillPercent.map((per,key)=>(
                         <div key={key}>
                             <Progress type="dashboard" steps={10} percent={per.percent} railColor="rgba(0, 0, 0, 0.06)" strokeWidth={20} />
-                            <p className='text-center text-white uppercase'>{per.name}</p>
+                            <p className='text-center lg:-ml-12 text-white uppercase'>{per.name}</p>
                         </div>
                     ))}
                 </div>

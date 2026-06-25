@@ -8,7 +8,7 @@ function Contact() {
 
     const contactDetails = [
         { icon: <MdLocationOff />, type: "Location", value: "Phnom Penh, Cambodia" },
-        { icon: <MdEmail />, type: "Email", value: "seabrothna835@gmail.com" },
+        { icon: <MdEmail />, type: "Email", value: "seabrothna835 @gmail.com" },
         { icon: <MdPhoneCallback />, type: "Phone", value: "093 444 534" }
     ];
 
@@ -42,7 +42,7 @@ function Contact() {
                 Thank you for visiting my website. Feel free to contact me.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 mt-10 mr-[20%] ml-[20%] pt-5 bg-gray-800 rounded-lg">
+            <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 mt-10 mr-[10%] ml-[10%] pt-5 bg-gray-800 rounded-lg">
 
                 {/* CONTACT DETAILS */}
                 <div className="p-5">
