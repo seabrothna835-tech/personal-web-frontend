@@ -115,6 +115,7 @@ function App() {
     };
     const handleCancelResponsive = () => {
         setOpenResponsive(false);
+        setMenuOpen(false);
         setFormData({
             name: "",
             title: "",
@@ -150,6 +151,7 @@ function App() {
                     description: "",
                 });
                 showObjectStyle();
+                setMenuOpen(false);
                 setOpenResponsive(false);
         } catch (error) {
             console.error(error);
