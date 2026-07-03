@@ -141,7 +141,7 @@ function App() {
 
     const handleSubmit = async () => {
         try {
-            const response = await axios.post("https://post-personal.onrender.com/api/advices",formData);
+            const response = await axios.post("http://localhost:3000/api/advices",formData);
             const data = await response.data;
                 setFormData({
                     name: "",
