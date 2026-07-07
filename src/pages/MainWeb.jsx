@@ -139,10 +139,23 @@ function App() {
         });
     };
 
+    // const [TelegramMessage,setTelegramMessage] = useState("");
+    const TelegramMessage = [
+        "====== បន្ថែមព័ត៌មានថ្មី ======",
+        "",
+        `👤 ឈ្មោះអ្នកផ្ដល់: ${formData.name}`,
+        `📌 ប្រធានបទ: ${formData.title}`,
+        `📞 លេខទូរស័ព្ទ: ${formData.phone}`,
+        `📧 អ៊ីមែល: ${formData.email}`,
+        `📝 ការបរិយាយ: ${formData.description}`,
+        "",
+        "=========================="
+    ].join("\n");
     const handleSubmit = async () => {
         try {
-            const response = await axios.post("http://localhost:3000/api/advices",formData);
-            const data = await response.data;
+            // const response = await axios.post("http://localhost:3000/api/advices",formData);
+            await axios.post("http://localhost:3000/api/telegram/send", {TelegramMessage});
+            // const data = await response.data;
                 setFormData({
                     name: "",
                     title: "",
@@ -424,7 +437,7 @@ function App() {
                             value={formData.phone}
                             onChange={handleChange}
                             className="w-full border-none bg-gray-300 rounded-lg p-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-                            placeholder="Enter your phone"
+                            placeholder="Enter your phone or null"
                         />
                     </div>
 
@@ -436,7 +449,7 @@ function App() {
                             value={formData.email}
                             onChange={handleChange}
                             className="w-full border-none bg-gray-300 rounded-lg p-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-                            placeholder="Enter your email"
+                            placeholder="Enter your email or null"
                         />
                     </div>
 

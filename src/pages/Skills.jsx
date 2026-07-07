@@ -51,7 +51,7 @@ function Skills() {
                     {skillPercent.map((per,key)=>(
                         <div key={key}>
                             <Progress type="dashboard" steps={10} percent={per.percent} railColor="rgba(0, 0, 0, 0.06)" strokeWidth={20} />
-                            <p className='text-center lg:-ml-12 -ml-12  text-white uppercase'>{per.name}</p>
+                            <p className='text-center lg:-ml-12 -ml-8  text-white uppercase'>{per.name}</p>
                         </div>
                     ))}
                 </div>
