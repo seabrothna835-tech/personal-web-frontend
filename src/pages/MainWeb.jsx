@@ -154,7 +154,7 @@ function App() {
     const handleSubmit = async () => {
         try {
             // const response = await axios.post("http://localhost:3000/api/advices",formData);
-            await axios.post("http://localhost:3000/api/telegram/send", {TelegramMessage});
+            await axios.post("https://post-personal.onrender.com/api/telegram/send", {TelegramMessage});
             // const data = await response.data;
                 setFormData({
                     name: "",
