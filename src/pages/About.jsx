@@ -64,7 +64,7 @@ function About() {
                     </p>
                     <div className="mt-8 flex justify-center lg:justify-start">
                         <a
-                            href="/Rothna_web_CV.pdf"
+                            href="/Rothna_CV.pdf"
                             download="RothnaCV.pdf"
                         >
                             <button className="moving-border bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-lg text-lg hover:scale-105 duration-300">
