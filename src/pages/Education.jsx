@@ -4,12 +4,12 @@ import { MdOutlineDateRange } from "react-icons/md";
 function Education() {
     const educations = [
         {icon:<MdOutlineDateRange/> ,date: "2024-Present", school:"University",desc:"Study at Royal University of Phnom Penh(RUPP) on major of computer science"},
-        {icon:<MdOutlineDateRange/> ,date: "2019-2024", school:"High School",desc:"Graduated at Hun sen takok High School"},
+        {icon:<MdOutlineDateRange/> ,date: "2019-2024", school:"High School",desc:"Graduated at Hun Sen Takok High School"},
         {icon:<MdOutlineDateRange/> ,date: "2013-2019", school:"Primary School",desc:"Graduated at Svay OukDom primary school"},
     ];
     const exps = [
         {icon:<MdOutlineDateRange/> ,date: "2024-Present",place:"ppap",desc:"I am working at PPAP since I was Year one at RUPP"},
-        {icon:<MdOutlineDateRange/> ,date: "2025-Present",place:"ETEC",desc:"at hear, I am Learning about C/C++ , Java, HTML, CSS, JAVASCRIPT"}
+        {icon:<MdOutlineDateRange/> ,date: "2025-Present",place:"ETEC",desc:"At hear, I am Learning about C/C++ , Java, HTML, CSS, JAVASCRIPT"}
     ];
     const [stepsCount, setStepsCount] = React.useState(5);
     const [stepsGap, setStepsGap] = React.useState(7);
@@ -49,7 +49,7 @@ function Education() {
                                 <p >{exp.date}</p>
                             </div>
                             <p className='text-3xl font-bold ml-8 uppercase'>{exp.place}</p>
-                            <p className='text-lg ml-8 capitalize'>{exp.desc}</p>
+                            <p className='text-lg ml-8 '>{exp.desc}</p>
                         </div>
                     </div>
                 ))}

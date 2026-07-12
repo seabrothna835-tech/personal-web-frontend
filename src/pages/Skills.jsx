@@ -33,7 +33,7 @@ function Skills() {
         {name:"java",percent:70},
         {name:"javascript",percent:20},
         {name:"react js",percent:60},
-        {name:"Database",percent:80},
+        {name:"Postgres",percent:80},
     ];
     return (
         <div className='pt-20'>

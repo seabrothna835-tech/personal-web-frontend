@@ -305,7 +305,7 @@ function App() {
                 <div className="flex justify-center">
                     <img
                     className="
-                        w-[180px]
+                        w-[200px]
                         sm:w-[250px]
                         md:w-[320px]
                         lg:w-[420px]
@@ -333,11 +333,11 @@ function App() {
                     Full Stack Web Developer
                     </p>
 
-                    <p className="mt-4 text-sm md:text-lg leading-relaxed">
-                    I build modern websites using React, Laravel, and PostgreSQL.
+                    <p className="mt-4 lg:ml-[10%] lg:mr-[30%] ml-[10%] mr-[10%] text-sm md:text-lg leading-relaxed">
+                    dedicated to building modern, scalable, and user-focused web applications.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-center lg:justify-start">
+                    <div className="mb-2 lg:mb-0 flex flex-col sm:flex-row gap-4 mt-8 justify-center lg:justify-start">
 
                     <button
                         className="
