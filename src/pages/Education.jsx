@@ -8,7 +8,7 @@ function Education() {
         {icon:<MdOutlineDateRange/> ,date: "2013-2019", school:"Primary School",desc:"Graduated at Svay OukDom primary school"},
     ];
     const exps = [
-        {icon:<MdOutlineDateRange/> ,date: "2024-Present",place:"ppap",desc:"I am working at PPAP since I was Year one at RUPP"},
+        {icon:<MdOutlineDateRange/> ,date: "2024-Present",place:"ppap",desc:"I am working at PPAP since I studied first year at RUPP"},
         {icon:<MdOutlineDateRange/> ,date: "2025-Present",place:"ETEC",desc:"At hear, I am Learning about C/C++ , Java, HTML, CSS, JAVASCRIPT"}
     ];
     const [stepsCount, setStepsCount] = React.useState(5);

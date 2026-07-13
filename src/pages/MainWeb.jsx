@@ -302,7 +302,7 @@ function App() {
                 "
             >
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-                <div className="flex justify-center">
+                <div className="flex justify-center lg:bg-none lg:border-none lg:pb-0 rounded-full bg-blue-400 pb-0.4  ">
                     <img
                     className="
                         w-[200px]
@@ -311,6 +311,7 @@ function App() {
                         lg:w-[420px]
                         xl:w-[500px]
                         h-auto
+                        rounded-b-2xl
                     "
                     src={picNobg}
                     alt="Profile"
