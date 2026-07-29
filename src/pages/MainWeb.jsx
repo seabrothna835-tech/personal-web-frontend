@@ -13,6 +13,8 @@ import axios from 'axios';
 import picNobg from "../assets/images/myPic_skinwhite_removebg.png"
 import { FaBars, FaTimes } from "react-icons/fa";
 
+let __telegramVisitorSent = false;
+
 const defaultStyles = {
     root: {
         backgroundColor: '#f6ffed',
@@ -49,7 +51,7 @@ const defaultStyles = {
     return defaultStyles;
     };
 
-function App() {
+function MainWeb() {
     const [active, setActive] = useState(false);
     const [openResponsive, setOpenResponsive] = useState(false);
     const [now, setNow] = useState(new Date());
@@ -62,10 +64,61 @@ function App() {
         return () => clearTimeout(timer);
     }, []);
 
+    // useEffect(() => {
+    //     const today = new Date().toISOString().slice(0, 10);
+    //     const storageKey = "telegramVisitorLastSent";
+    //     const lastSent = window.localStorage.getItem(storageKey);
+    //     if (lastSent === today) return;
+    //     const sendDailyVisitor = async () => {
+    //         try {
+    //             await axios.post("https://post-personal-web-backend.onrender.com/api/telegram/visitor");
+    //             window.localStorage.setItem(storageKey, today);
+    //         } catch (error) {
+    //             console.error("Telegram daily visitor webhook error:", error);
+    //         }
+    //     };
+    //     sendDailyVisitor();
+    // }, []);
+    function getIpAddress() {
+        return axios.get('https://api.ipify.org?format=json')
+            .then(response => response.data.ip)
+            .catch(error => {
+                console.error('Error fetching IP address:', error);
+                return 'Unknown';
+            });
+    }
+        useEffect(()  => {
+        const sendVisitor = async () => {
+            const visitorMessage = [
+                    "📣 New website visitor",
+                    "====================================",
+                    `🧭 Page: ${window.location.href}`,
+                    `🔗 Referrer: ${document.referrer || "Direct"}`,
+                    `🖥️ OS: ${navigator.platform}`,
+                    `🖥️ Device: ${navigator.userAgentData?.platform || "Unknown"}`,
+                    `🌐 Ip Address: ${getIpAddress()}`,
+                    `🌐 Language: ${navigator.language}`,
+                    `🖥️ Screen: ${window.screen.width}x${window.screen.height}`,
+                    `⏱️ Time: ${new Date().toLocaleString()}`,
+                    "====================================",
+                    "👨‍💻 Source: AURA personal website"
+                ].join("\n");
+            try {
+                await axios.post(
+                    "https://post-personal-web-backend.onrender.com/api/telegram/visitor",{ visitorMessage }
+                );
+                console.log(visitorMessage);
+            } catch (err) {
+                console.error(err);
+            }
+        };
+        sendVisitor();
+    }, []);
+
     useEffect(() => {
         const timer = setInterval(() => {
         setNow(new Date());
-        }, 10);
+        }, 1000);
 
         return () => clearInterval(timer);
     }, []);
@@ -149,7 +202,10 @@ function App() {
         `📧 អ៊ីមែល: ${formData.email}`,
         `📝 ការបរិយាយ: ${formData.description}`,
         "",
-        "=========================="
+        `🌐 Page: ${window.location.href}`,
+        `🕒 Time: ${new Date().toLocaleString()}`,
+        "====================================",
+        "Thank you for your feedback!"
     ].join("\n");
     const handleSubmit = async () => {
         try {
@@ -267,7 +323,7 @@ function App() {
             >
             <div
                 className="
-                fixed top-24 right-2 md:right-4
+                fixed top-18 right-1 md:right-4
                 w-[50%] sm:w-[10%] md:w-[40%] lg:w-[25%]
                 overflow-hidden bg-black/10 backdrop-blur-md
                 rounded-lg px-2 z-40
@@ -473,4 +529,4 @@ function App() {
     );
 }
 
-export default App;
+export default MainWeb;

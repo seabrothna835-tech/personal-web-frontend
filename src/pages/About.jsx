@@ -3,7 +3,7 @@ import faceBook from "../assets/socail_media/communication.png"
 import tiktok from "../assets/socail_media/tiktok.png"
 import instagram from "../assets/socail_media/instagram.png"
 import telegram from "../assets/socail_media/telegram.png"
-
+import React, { useEffect, useRef, useState } from "react"
 function About() {
     const viewFacebook = ()=>{
         window.open("https://www.facebook.com/share/1HSNovuqV2/","_blank")
@@ -17,15 +17,37 @@ function About() {
     const viewTiktok = ()=>{
         window.open("tiktok.com/@ahnold30","_blank")
     }
+    const imgRef = useRef(null)
+    const [isVisible, setIsVisible] = useState(false)
+
+    useEffect(() => {
+    const observer = new IntersectionObserver(
+        ([entry]) => {
+        if (entry.isIntersecting) {
+            setIsVisible(true)
+            observer.disconnect()
+        }
+        },
+        { threshold: 0.3 }
+    )
+
+    if (imgRef.current) observer.observe(imgRef.current)
+    return () => observer.disconnect()
+    }, [])
     return (
         <div className="w-full text-white px-4 py-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center max-w-7xl mx-auto">
                 {/* Left Side */}
                 <div className="flex flex-col items-center">
                     <img
+                        ref={imgRef}
                         src={picDeveloper}
                         alt=""
-                        className="w-full max-w-[300px] h-auto rounded-2xl hover:scale-102 duration-300 hover:animate-pulse"
+                        className={`w-full max-w-[300px] h-auto rounded-2xl transition-all duration-700 ease-out ${
+                            isVisible
+                            ? "opacity-100 translate-y-0 scale-100"
+                            : "opacity-0 translate-y-8 scale-95"
+                        }`}
                     />
                     <div className="flex justify-center gap-4 mt-4 bg-black/30 backdrop-blur-md p-3 rounded-2xl">
                         <div className="bg-blue-500 p-2 rounded-lg hover:bg-blue-600 hover:scale-105 duration-300">
