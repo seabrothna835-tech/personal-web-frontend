@@ -89,21 +89,24 @@ function MainWeb() {
     }
         useEffect(()  => {
         const sendVisitor = async () => {
-            const visitorMessage = [
+            try {
+                const ip = await getIpAddress();
+
+                const visitorMessage = [
                     "📣 New website visitor",
                     "====================================",
                     `🧭 Page: ${window.location.href}`,
                     `🔗 Referrer: ${document.referrer || "Direct"}`,
                     `🖥️ OS: ${navigator.platform}`,
                     `🖥️ Device: ${navigator.userAgentData?.platform || "Unknown"}`,
-                    `🌐 Ip Address: ${getIpAddress()}`,
+                    `🌐 Ip Address: ${ip}`,
                     `🌐 Language: ${navigator.language}`,
                     `🖥️ Screen: ${window.screen.width}x${window.screen.height}`,
                     `⏱️ Time: ${new Date().toLocaleString()}`,
                     "====================================",
                     "👨‍💻 Source: AURA personal website"
                 ].join("\n");
-            try {
+
                 await axios.post(
                     "https://post-personal-web-backend.onrender.com/api/telegram/visitor",{ visitorMessage }
                 );
