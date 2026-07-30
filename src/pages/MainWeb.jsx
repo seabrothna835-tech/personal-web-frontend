@@ -56,6 +56,8 @@ function MainWeb() {
     const [openResponsive, setOpenResponsive] = useState(false);
     const [now, setNow] = useState(new Date());
     const [menuOpen, setMenuOpen] = useState(false);
+    const [latitude, setLatitude] = useState(null);
+    const [longitude, setLongitude] = useState(null);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -87,35 +89,51 @@ function MainWeb() {
                 return 'Unknown';
             });
     }
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            setLatitude(position.coords.latitude);
+            setLongitude(position.coords.longitude);
+            console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+        },
+        (error) => {
+            console.error('Error getting geolocation:', error);
+        }
+    );
+    const getAdress = `https://www.google.com/maps?q=${latitude},${longitude}`;
         useEffect(()  => {
-        const sendVisitor = async () => {
-            try {
-                const ip = await getIpAddress();
+        const timer = setTimeout(() => {
+            const sendVisitor = async () => {
+                try {
+                    const ip = await getIpAddress();
 
-                const visitorMessage = [
-                    "📣 New website visitor",
-                    "====================================",
-                    `🧭 Page: ${window.location.href}`,
-                    `🔗 Referrer: ${document.referrer || "Direct"}`,
-                    `🖥️ OS: ${navigator.platform}`,
-                    `🖥️ Device: ${navigator.userAgentData?.platform || "Unknown"}`,
-                    `🌐 Ip Address: ${ip}`,
-                    `🌐 Language: ${navigator.language}`,
-                    `🖥️ Screen: ${window.screen.width}x${window.screen.height}`,
-                    `⏱️ Time: ${new Date().toLocaleString()}`,
-                    "====================================",
-                    "👨‍💻 Source: AURA personal website"
-                ].join("\n");
+                    const visitorMessage = [
+                        "📣 New website visitor",
+                        "====================================",
+                        `🧭 Page: ${window.location.href}`,
+                        `🔗 Referrer: ${document.referrer || "Direct"}`,
+                        `🖥️ OS: ${navigator.platform}`,
+                        `🖥️ Device: ${navigator.userAgentData?.platform || "Unknown"}`,
+                        `🌐 Ip Address: ${ip}`,
+                        `🌐 Language: ${navigator.language}`,
+                        `🖥️ Screen: ${window.screen.width}x${window.screen.height}`,
+                        `📍 Location: ${getAdress}`,
+                        `⏱️ Time: ${new Date().toLocaleString()}`,
+                        "====================================",
+                        "👨‍💻 Source: AURA personal website"
+                    ].join("\n");
 
-                await axios.post(
-                    "https://post-personal-web-backend.onrender.com/api/telegram/visitor",{ visitorMessage }
-                );
-                console.log(visitorMessage);
-            } catch (err) {
-                console.error(err);
-            }
-        };
-        sendVisitor();
+                    await axios.post(
+                        "https://post-personal-web-backend.onrender.com/api/telegram/visitor",{ visitorMessage }
+                    );
+                    console.log(visitorMessage);
+                } catch (err) {
+                    console.error(err);
+                }
+            };
+            sendVisitor();
+        }, 5000);
+        // sendVisitor();
+        return () => clearTimeout(timer); // Cleanup
     }, []);
 
     useEffect(() => {
