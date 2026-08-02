@@ -100,10 +100,10 @@ function MainWeb() {
     // const getAdress = `https://www.google.com/maps?q=${latitude},${longitude}`;
     const getLocation = () => {
         return new Promise((resolve) => {
-            if (!navigator.geolocation) {
-                resolve(null);
-                return;
-            }
+            // if (!navigator.geolocation) {
+            //     resolve(null);
+            //     return;
+            // }
 
             navigator.geolocation.getCurrentPosition(
                 (position) => {
